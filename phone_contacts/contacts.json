@@ -1,14 +1,1 @@
-[
-    {
-        "id": 1,
-        "firstname": "Yungyeong",
-        "lastname": "Gu",
-        "phone_number": "1234"
-    },    
-    {
-        "id": 2,
-        "firstname": "Alexander",
-        "lastname": "Fridlin",
-        "phone_number": "5678"
-    }
-]
+[{"id": 1, "firstname": "Yungyeong", "lastname": "Gu", "phone_number": "1234"}, {"id": 2, "firstname": "Alexander", "lastname": "Fridlin", "phone_number": "5678"}, {"id": 3, "firstname": "Alex", "lastname": "F", "phone_number": "2222"}]

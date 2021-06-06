@@ -18,3 +18,11 @@ class Contact:
         contact = Contact(dict['firstname'], dict['lastname'], dict['phone_number'])
         contact.id = dict['id']
         return contact
+
+    def to_json(self):
+        return {
+            'id': self.id,
+            'firstname': self.firstname,
+            'lastname': self.lastname,
+            'phone_number': self.phone_number
+        }
