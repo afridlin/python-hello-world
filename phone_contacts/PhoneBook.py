@@ -2,6 +2,8 @@ import json
 from Contact import Contact
 
 class PhoneBook:
+    selected_contact_id = 0
+
     def read_from_file(self):
         contacts_file = open('contacts.json', 'r')
         contact_dicts = json.load(contacts_file)
@@ -29,6 +31,12 @@ class PhoneBook:
         
         if selection == '1':
             self.show_add_dialog()
+        elif selection == '2':
+            self.show_search()
+        elif selection == '3':
+            self.show_list()
+        else:
+            print('Please select option 1, 2 or 3')
 
     def show_add_dialog(self):
         first_name = input('First name: ')
@@ -44,8 +52,41 @@ class PhoneBook:
         contacts.append(contact)
         self.save_to_file(contacts)
 
-    def show_list(self):
+    def show_search(self):
+        keyword = input('Search: ').lower()
         contacts = self.read_from_file()
+        filtered = []
 
         for contact in contacts:
+            first_name = contact.firstname.lower()
+            last_name = contact.lastname.lower()
+            phone_number = contact.phone_number
+
+            if first_name.find(keyword) >= 0 or last_name.find(keyword) >= 0 or phone_number.find(keyword) >= 0:
+                filtered.append(contact)
+
+        if len(filtered) > 0:
+            self.print_contacts(filtered)
+        else:
+            print('No contacts found.')
+
+    def show_list(self):
+        contacts = self.read_from_file()
+        self.print_contacts(contacts)
+
+    def print_contacts(self, contacts):
+        for contact in contacts:
             print(f"{contact.id}     {contact.firstname} {contact.lastname}")
+
+    def show_list_options(self):
+        print('[1] Select    [2] Main Menu')
+        selection = input()
+
+        if selection == '1':
+            self.select()
+        elif selection == '2':
+            self.show_start_menu()
+
+    def select(self):
+        self.selected_contact_id = int(input('ID: '))
+        ## continue from here
