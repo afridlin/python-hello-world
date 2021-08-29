@@ -67,12 +67,14 @@ class PhoneBook:
 
         if len(filtered) > 0:
             self.print_contacts(filtered)
+            self.show_list_options()
         else:
             print('No contacts found.')
 
     def show_list(self):
         contacts = self.read_from_file()
         self.print_contacts(contacts)
+        self.show_list_options()
 
     def print_contacts(self, contacts):
         for contact in contacts:
@@ -89,4 +91,30 @@ class PhoneBook:
 
     def select(self):
         self.selected_contact_id = int(input('ID: '))
-        ## continue from here
+        self.show_contact()
+
+    def show_contact(self):
+        contact = self.find_by_id(self.selected_contact_id)
+
+        if contact != None:
+            print(f"Name: {contact.firstname} {contact.lastname}")
+            print(f"Phone number: {contact.phone_number}")
+            print(f"Company: {contact.company}")
+
+            if (contact.date_of_birth != None):
+                print(f"Date of Birth: {contact.date_of_birth.strftime('%d.%m.%Y')}")
+
+            if (contact.blocked):
+                print('Blocked: Yes')
+            else:
+                print('Blocked: No')
+            
+
+    def find_by_id(self, id):
+        contacts = self.read_from_file()
+
+        for contact in contacts:
+            if contact.id == id:
+                return contact
+
+        return None
