@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Yun's HTML Class</title>
+    <meta name="description" content="Demonstrate headings">
+    <meta name="keywords" content="html tutorial headings">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+    <h1>Yun's HTML Class</h1>
+    <h2>News</h2>
+    <p id="paragraph" class="important">
+        Heute wäre schon genug.
+    </p>
+    <button id="button">Show/Hide</button>
+
+    <style>
+        .important {
+            color: red;
+        }
+    </style>
+    <script>
+        var button = document.getElementById("button");
+
+        button.addEventListener("click", function () {
+            var p = document.getElementById("paragraph");
+            p.style.display = "none";
+        });
+    </script>
+</body>
+
+</html>
